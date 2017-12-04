@@ -12,8 +12,7 @@ configFunc.$inject = ['$stateProvider', '$urlRouterProvider',
   '$ionicConfigProvider', '$authProvider', 'ENV'
 ];
 
-function configFunc($stateProvider, $urlRouterProvider, $ionicConfigProvider,
-  $authProvider, ENV) {
+function configFunc($stateProvider, $urlRouterProvider, $ionicConfigProvider, $authProvider, ENV) {
 
   //center view title always
   $ionicConfigProvider.navBar.alignTitle('center');
@@ -47,7 +46,11 @@ function configFunc($stateProvider, $urlRouterProvider, $ionicConfigProvider,
 
 
   //provide fallback state
-  $urlRouterProvider.otherwise('/performance');
+  // this is a hack for fix an issue with ui router
+  $urlRouterProvider.otherwise(function ($injector, $location) {
+    var $state = $injector.get("$state");
+    $state.go('app.dashboard.overviews');
+  });
 
   //base application state
   $stateProvider
@@ -76,9 +79,38 @@ function configFunc($stateProvider, $urlRouterProvider, $ionicConfigProvider,
       url: '/overviews',
       views: {
         'overviews': {
-          templateUrl: 'views/dashboards/overviews/index.html',
+          templateUrl: 'views/dashboards/overviews.html',
           controller: 'DashboardOverviewCtrl'
         }
+      },
+      data: {
+        authenticated: true
+      },
+      resolve: {
+        endpoints: function (Summary) {
+          return Summary.endpoints({
+            query: {
+              deletedAt: {
+                $eq: null
+              }
+            }
+          });
+        }
+      }
+    })
+    // view jurisdiction performance from overview report
+    .state('app.dashboard.jurisdiction', {
+      url: '/jurisdiction',
+      views: {
+        'overviews': {
+          templateUrl: 'views/dashboards/performances.html',
+          controller: 'DashboardPerformanceCtrl'
+        }
+      },
+      params: {
+        jurisdiction: null,
+        startedAt: null,
+        endedAt: null
       },
       data: {
         authenticated: true
@@ -99,12 +131,23 @@ function configFunc($stateProvider, $urlRouterProvider, $ionicConfigProvider,
       url: '/performance',
       views: {
         'performance': {
-          templateUrl: 'views/dashboards/performances/index.html',
+          templateUrl: 'views/dashboards/performances.html',
           controller: 'DashboardPerformanceCtrl'
         }
       },
       data: {
         authenticated: true
+      },
+      resolve: {
+        endpoints: function (Summary) {
+          return Summary.endpoints({
+            query: {
+              deletedAt: {
+                $eq: null
+              }
+            }
+          });
+        }
       }
     })
     .state('app.dashboard.standing', {

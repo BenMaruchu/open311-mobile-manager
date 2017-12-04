@@ -12,7 +12,7 @@
       <div class="col col-50 p-0">
         <div class="summary-card b-r b-b">
           <div class="text-center">
-            <h2>0</h2>
+            <h2> {{performances.overall.count | number:0}}</h2>
             <p class="text-muted">Total</p>
           </div>
         </div>
@@ -23,7 +23,7 @@
       <div class="col col-50 p-0">
         <div class="summary-card b-b">
           <div class="text-center">
-            <h2>0</h2>
+            <h2>{{performances.overall.pending | number:0}}</h2>
             <p class="text-muted">Pending</p>
           </div>
         </div>
@@ -36,7 +36,7 @@
       <div class="col col-50 p-0">
         <div class="summary-card b-r b-b">
           <div class="text-center">
-            <h2>0</h2>
+            <h2> {{performances.overall.resolved | number:0}}</h2>
             <p class="text-muted">Resolved</p>
           </div>
         </div>
@@ -47,7 +47,7 @@
       <div class="col col-50 p-0">
         <div class="summary-card b-b">
           <div class="text-center">
-            <h2>0</h2>
+            <h2>{{performances.overall.late | number:0}}</h2>
             <p class="text-muted">Late</p>
           </div>
         </div>
@@ -61,7 +61,7 @@
       <div class="summary-card b-b">
         <div class="text-center">
           <h2>
-            0
+            {{performances.overall.late | number:0}}
           </h2>
           <p class="text-muted">Escallated</p>
         </div>
@@ -70,7 +70,7 @@
     <!-- end escallated overview indicator -->
 
     <!-- start overview visualization -->
-    <echart config="visualizationPieConfig" options="overviewOptions"></echart>
+    <echart config="visualizationPieConfig" options="perSummaryOptions"></echart>
     <!-- end overview visualization -->
   </div>
 </ion-list>

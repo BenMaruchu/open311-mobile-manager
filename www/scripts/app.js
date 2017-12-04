@@ -6,7 +6,8 @@ angular
     'angular-echarts',
     'ngAA',
     'pickadate',
-    'checklist-model'
+    'checklist-model',
+    'ngCordova'
   ])
   .run(runFunc);
 
@@ -23,6 +24,9 @@ function runFunc($ionicPlatform /*, $cordovaSplashscreen , $cordovaStatusbar*/ )
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
+
+    // get network information
+
 
     //set status bar colors
     if (window.StatusBar) {

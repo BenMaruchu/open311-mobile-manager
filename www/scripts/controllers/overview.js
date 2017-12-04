@@ -53,7 +53,7 @@ function DashboardOverviewCtrl($q, $rootScope, $scope, $state, $ionicModal, $ion
 
     $scope.modalTitle = 'Overview Reports - Filters';
 
-    $ionicModal.fromTemplateUrl('views/dashboards/_partials/filters.html', {
+    $ionicModal.fromTemplateUrl('views/templates/filters/filters.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function (modal) {
@@ -126,6 +126,8 @@ function DashboardOverviewCtrl($q, $rootScope, $scope, $state, $ionicModal, $ion
     $scope.prepareJurisdictionVisualization();
     $scope.prepareServiceGroupVisualization();
     $scope.prepareServiceVisualization();
+    $scope.prepareMethodVisualization();
+    $scope.prepareWorkspaceVisualization();
     $scope.prepareJurisdictionsRanks();
     $scope.prepareServiceGroupsRanks();
     $scope.prepareServicesRanks();
@@ -616,6 +618,126 @@ function DashboardOverviewCtrl($q, $rootScope, $scope, $state, $ionicModal, $ion
       .sortBy('name')
       .value();
   };
+
+
+  /**
+   * prepare method overview visualization
+   * @return {object} echart pie chart configurations
+   * @version 0.1.0
+   * @since  0.1.0
+   * @author lally elias<lallyelias87@gmail.com>
+   */
+  $scope.prepareMethodVisualization = function (column) {
+
+    //ensure column
+    column = column || 'count';
+
+
+    //prepare chart series data
+    var data = _.map($scope.overviews.methods, function (method) {
+      return {
+        name: method.name,
+        value: method[column]
+      };
+    });
+
+    //prepare chart config
+    $scope.perMethodConfig = {
+      height: 300,
+      forceClear: true
+    };
+
+    //prepare chart options
+    $scope.perMethodOptions = {
+      textStyle: {
+        fontFamily: 'Lato'
+      },
+      title: {
+        text: column === 'count' ? 'Total' : _.upperFirst(column.toLowerCase()),
+        subtext: $filter('number')(_.sumBy(data, 'value'), 0),
+        x: 'center',
+        y: 'center',
+        textStyle: {
+          fontWeight: 'normal',
+          fontSize: 16
+        }
+      },
+
+      series: [{
+        type: 'pie',
+        selectedMode: 'single',
+        radius: ['35%', '45%'],
+        color: _.map($scope.overviews.services, 'color'),
+        label: {
+          normal: {
+            formatter: '{b}\n{d}%\n( {c} )',
+          }
+        },
+        data: data
+      }]
+    };
+
+  };
+
+  /**
+   * prepare workspace overview visualization
+   * @return {object} echart pie chart configurations
+   * @version 0.1.0
+   * @since  0.1.0
+   * @author lally elias<lallyelias87@gmail.com>
+   */
+  $scope.prepareWorkspaceVisualization = function (column) {
+
+    //ensure column
+    column = column || 'count';
+
+
+    //prepare chart series data
+    var data = _.map($scope.overviews.workspaces, function (workspace) {
+      return {
+        name: workspace.name,
+        value: workspace[column]
+      };
+    });
+
+    //prepare chart config
+    $scope.perWorkspaceConfig = {
+      height: 300,
+      forceClear: true
+    };
+
+    //prepare chart options
+    $scope.perWorkspaceOptions = {
+      textStyle: {
+        fontFamily: 'Lato'
+      },
+      title: {
+        text: column === 'count' ? 'Total' : _.upperFirst(column.toLowerCase()),
+        subtext: $filter('number')(_.sumBy(data, 'value'), 0),
+        x: 'center',
+        y: 'center',
+        textStyle: {
+          fontWeight: 'normal',
+          fontSize: 16
+        }
+      },
+      series: [{
+        type: 'pie',
+        selectedMode: 'single',
+        radius: ['35%', '45%'],
+        color: _.reverse(_.map($scope.overviews.services,
+          'color')),
+        label: {
+          normal: {
+            formatter: '{b}\n{d}%\n( {c} )',
+          }
+        },
+        data: data
+      }]
+    };
+
+  };
+
 
   /**
    * Reload overview reports

@@ -1,0 +1,31 @@
+<!-- start profile summary -->
+<ion-list class="list-item-no-border">
+  <ion-item class="no-border-bottom">
+    <!-- start profile header -->
+    <div style="text-align:center">
+      <!-- start letter avatar -->
+      <letter-avatar title="{{jurisdiction.name}}" data="{{jurisdiction.name}}" height="90" width="90" shape="round">
+      </letter-avatar>
+      <!-- end letter avatar -->
+    </div>
+
+    <!-- starty jurisdiction details -->
+    <div class="jurisdiction-details">
+      <p class="text-md">
+        <i class="ion-ios-person text-md"></i>&nbsp;{{jurisdiction.name}}
+      </p>
+      <p class="text-md">
+        <i class="ion-ios-telephone-outline text-md"></i>&nbsp; {{jurisdiction.phone}}
+      </p>
+      <p class="text-md">
+        <i class="ion-ios-email-outline text-md"></i>&nbsp; {{jurisdiction.email}}
+      </p>
+      <p class="text-md">
+        <i class="ion-ribbon-b text-md"></i>&nbsp; Rank: {{jurisdiction.rank ? '#'+jurisdiction.rank : 'N/A'}}
+      </p>
+    </div>
+    <!-- end jurisdiction details -->
+    <!-- end profile header -->
+  </ion-item>
+</ion-list>
+<!-- end profile summary -->

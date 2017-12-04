@@ -1,0 +1,36 @@
+<!-- start of performance report -->
+<ion-view view-title="Performance - {{jurisdiction.name}}">
+  <ion-nav-buttons side="right">
+    <button class="button button-dawasco button-icon ion-android-funnel" ng-click="openModal()">
+    </button>
+    <ion-nav-bar>
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+  </ion-nav-buttons>
+  <ion-content has-subheader="false">
+    <!-- start pull to refresh -->
+    <ion-refresher on-refresh="refresh()" pulling-icon="ion-ios-arrow-thin-up">
+    </ion-refresher>
+    <!-- end pull to refresh -->
+    <!-- start profile summary -->
+    <ng-include src="'views/templates/dashboards/performances/jurisdiction_summary.html'"></ng-include>
+    <!-- end profile summary -->
+    <!-- start average time summary -->
+    <ng-include src="'views/templates/dashboards/performances/average_time_summary.html'"></ng-include>
+    <!-- end average time summary -->
+    <!-- start overview summary -->
+    <ng-include src="'views/templates/dashboards/performances/overall_summary.html'"></ng-include>
+    <!-- end overview summary -->
+    <!-- start pipeline summary -->
+    <ng-include src="'views/templates/dashboards/performances/pipeline_summary.html'"></ng-include>
+    <!-- end pipeline summary -->
+    <!-- start service group summary -->
+    <ng-include src="'views/templates/dashboards/performances/service_group_summary.html'"></ng-include>
+    <!-- end service group summary -->
+    <!-- start per service summary -->
+    <ng-include src="'views/templates/dashboards/performances/service_summary.html'"></ng-include>
+    <!-- end per service summary -->
+  </ion-content>
+</ion-view>
+<!-- end of performance report -->

@@ -1,0 +1,65 @@
+<!-- start pipeline summary -->
+<ion-list>
+  <ion-item class="m-t-40 item-header">
+    <h2>Area Pipeline Summary</h2>
+    <p>
+      <!-- Count of Reported Issues by Their -->
+    </p>
+  </ion-item>
+  <div>
+    <div class="row p-0">
+      <!-- start open issues indicator -->
+      <div class="col col-50 p-0">
+        <div class="summary-card b-r b-b">
+          <div class="text-center">
+            <h2>{{performances.statuses[0].count || 0}}</h2>
+            <p class="text-muted">{{performances.statuses[0].name || 'Open'}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- end open issues indicator -->
+
+      <!-- start escallated issues indicator -->
+      <div class="col col-50 p-0">
+        <div class="summary-card b-b">
+          <div class="text-center">
+            <h2>{{performances.statuses[1].count || 0}}</h2>
+            <p class="text-muted">{{performances.statuses[1].name || 'Escallated'}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- end escallated issues indicator -->
+    </div>
+
+    <div class="row p-0">
+      <!-- start inprogress issues indicator -->
+      <div class="col col-50 p-0">
+        <div class="summary-card b-r b-b">
+          <div class="text-center">
+            <h2>{{performances.statuses[2].count || 0}}</h2>
+            <p class="text-muted">{{performances.statuses[2].name || 'In Progress'}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- end inprogress issues indicator -->
+
+      <!-- start closed isssues indicator -->
+      <div class="col col-50 p-0">
+        <div class="summary-card b-b">
+          <div class="text-center">
+            <h2>{{performances.statuses[3].count || 0}}</h2>
+            <p class="text-muted">{{performances.statuses[3].name || 'Closed'}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- end closed isssues indicator -->
+
+    </div>
+
+    <!-- start performance pipeline visualization -->
+    <echart config="visualizationPieConfig" options="perStatusesOptions"></echart>
+    <!-- end performance pipeline visualization -->
+  </div>
+</ion-list>
+
+<!-- end pipeline summary -->

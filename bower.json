@@ -17,7 +17,8 @@
     "ng-aa": "^0.3.0",
     "angular-pickadate": "https://github.com/lykmapipo/angular-pickadate.git#^2.1.2",
     "checklist-model": "^0.11.0",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "ngCordova": "^0.1.27-alpha"
   },
   "resolutions": {
     "angular-ui-router": "^1.0.3",
