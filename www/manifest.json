@@ -1,11 +1,36 @@
 {
-  "name": "My Ionic App",
-  "short_name": "My Ionic App",
+  "name": "Dawasco Manager",
+  "short_name": "Dawasco",
   "start_url": "index.html",
+  "theme_color": "#2196F3",
+  "background_color": "#2196F3",
   "display": "standalone",
   "icons": [{
-    "src": "icon.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }]
+      "src": "img/launcher/res/minimap-hdpi/ic_launcher.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "density": 1.5
+    }, {
+      "src": "img/launcher/res/minimap-mdpi/ic_launcher.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "density": 1.0
+    }, {
+      "src": "img/launcher/res/minimap-xhdpi/ic_launcher.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "density": 2.0
+    }, {
+      "src": "img/launcher/res/minimap-xxhdpi/ic_launcher.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "density": 3.0
+    },
+    {
+      "src": "img/launcher/res/minimap-xxxhdpi/ic_launcher.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": 4.0
+    }
+  ]
 }

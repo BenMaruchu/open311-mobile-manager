@@ -6,14 +6,13 @@ angular
     'angular-echarts',
     'ngAA',
     'pickadate',
-    'checklist-model',
-    'ngCordova'
+    'checklist-model'
   ])
   .run(runFunc);
 
 runFunc.$inject = ['$ionicPlatform'];
 
-function runFunc($ionicPlatform /*, $cordovaSplashscreen , $cordovaStatusbar*/ ) {
+function runFunc($ionicPlatform /*, $cordovaSplashscreen , $cordovaStatusbar*/) {
 
   $ionicPlatform.ready(function () {
 

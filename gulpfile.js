@@ -21,7 +21,7 @@ const paths = {
 
 
 //wiredep tasks
-gulp.task('wiredep', function() {
+gulp.task('wiredep', function () {
   gulp.src(paths.index)
     .pipe(wiredep())
     .pipe(gulp.dest('./www'));
@@ -29,7 +29,7 @@ gulp.task('wiredep', function() {
 
 
 //usemin
-gulp.task('usemin', function() {
+gulp.task('usemin', function () {
   return gulp.src('./www/*.html')
     .pipe(usemin({
       css: [cleanCss(), rev()],
@@ -47,7 +47,7 @@ gulp.task('usemin', function() {
 
 
 //sass tasks
-gulp.task('sass', function(done) {
+gulp.task('sass', function (done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .on('error', sass.logError)
@@ -61,9 +61,21 @@ gulp.task('sass', function(done) {
 });
 
 //watch task
-gulp.task('watch', ['sass'], function() {
+gulp.task('watch', ['sass'], function () {
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.index, ['wiredep']);
+});
+
+gulp.task('generate-service-worker', function (callback) {
+  var path = require('path');
+  var swPrecache = require('sw-precache');
+  var rootDir = 'www';
+
+  swPrecache.write(path.join(rootDir, 'service-worker.js'), {
+    staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}'],
+    stripPrefix: rootDir,
+    maximumFileSizeToCacheInBytes: 1024 * 1024 * 5
+  }, callback);
 });
 
 //build task

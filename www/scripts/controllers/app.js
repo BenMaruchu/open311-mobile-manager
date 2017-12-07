@@ -12,9 +12,11 @@ angular
   .module('dawasco')
   .controller('AppController', AppController);
 
-AppController.$inject = ['$rootScope', '$cordovaToast', '$cordovaNetwork', '$ionicLoading'];
+// AppController.$inject = ['$rootScope', '$cordovaToast', '$cordovaNetwork', '$ionicLoading'];
+AppController.$inject = ['$rootScope', '$ionicLoading'];
 
-function AppController($rootScope, $cordovaToast, $cordovaNetwork, $ionicLoading) {
+// function AppController($rootScope, $cordovaToast, $cordovaNetwork, $ionicLoading) {
+function AppController($rootScope, $ionicLoading) {
 
   $rootScope.$on('signinBegin', function () {
     $ionicLoading.show({
@@ -33,28 +35,28 @@ function AppController($rootScope, $cordovaToast, $cordovaNetwork, $ionicLoading
   $rootScope.$on('signinError', function (response) {
 
     // check for network connection and toast if it is offline
-    if (!$cordovaNetwork.isOnline()) {
-      $cordovaToast.
-      showLongBottom('No Network Connection')
-        .then(function (success) {
-          $ionicLoading.hide();
-        }, function (error) {
-          console.log(error);
-          $ionicLoading.hide();
-        });
-    } else {
+    // if (!$cordovaNetwork.isOnline()) {
+    //   $cordovaToast.
+    //     showLongBottom('No Network Connection')
+    //     .then(function (success) {
+    //       $ionicLoading.hide();
+    //     }, function (error) {
+    //       console.log(error);
+    //       $ionicLoading.hide();
+    //     });
+    // } else {
 
-      // show toast when login credentials are invalid
-      $cordovaToast
-        .showLongBottom('Invalid Email or Password, Please Try Again')
-        .then(function (success) {
-          $ionicLoading.hide();
-        }, function (error) {
-          console.log(error);
-          $ionicLoading.hide();
-        });
+    //   // show toast when login credentials are invalid
+    //   $cordovaToast
+    //     .showLongBottom('Invalid Email or Password, Please Try Again')
+    //     .then(function (success) {
+    //       $ionicLoading.hide();
+    //     }, function (error) {
+    //       console.log(error);
+    //       $ionicLoading.hide();
+    //     });
 
-    }
+    // }
   });
 
 }

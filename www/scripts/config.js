@@ -9,8 +9,8 @@ angular
     version: 'v0.1.0',
     description: 'Citizen Feedback System Management Application',
     apiEndPoint: {
-      web: 'http://dawasco.herokuapp.com',
-      mobile: 'http://dawasco.herokuapp.com'
+      web: 'https://dawasco.herokuapp.com',
+      mobile: 'https://dawasco.herokuapp.com'
       // web: 'http://127.0.0.1:3000',
       // mobile: 'http://127.0.0.1:3000'
     },
